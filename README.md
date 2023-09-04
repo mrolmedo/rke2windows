@@ -37,6 +37,10 @@ rke2 service logs:
 
 Get-EventLog Application -Source rke2 -Newest 50 | Select-Object -Property ReplacementStrings
 
+### Kubelet logs
+```
+C:\var\lib\rancher\rke2\agent\logs>kubelet.log
+```
 ### Event logs
 ```
 Get-EventLog -LogName Application -Source 'rke'  -Newest 500 | format-table  -Property TimeGenerated, ReplacementStrings -Wrap
