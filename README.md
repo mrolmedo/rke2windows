@@ -34,6 +34,16 @@ crictl
 "C:\var\lib\rancher\rke2\bin\crictl.exe" -r "npipe:////./pipe/containerd-containerd" ps
 ```
 
+### Pre checks
+
+- [x] WindowsOptionalFeature  Installed and Enable
+```
+Get-WindowsOptionalFeature -Online -FeatureName constainers
+Get-WindowsFeature -Name Containers
+```
+- [x] Kubelet, kube-proxy, calico running
+```
+Get-Process | findstr "kube calico"
 
 ### Kubelet logs
 ```
