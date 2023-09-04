@@ -35,7 +35,6 @@ crictl
 logging
 rke2 service logs:
 
-Get-EventLog Application -Source rke2 -Newest 50 | Select-Object -Property ReplacementStrings
 
 ### Kubelet logs
 ```
