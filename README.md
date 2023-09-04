@@ -23,17 +23,16 @@ kubeconfig / kubectl
 set KUBECONFIG="C:\var\lib\rancher\rke2\agent\kubelet.kubeconfig"
 "C:\var\lib\rancher\rke2\bin\kubectl.exe" get node
 ```
-ctr
+### ctr
 List containers using ctr
-
+```
 ctr --address "\\.\\pipe\\containerd-containerd" --namespace k8s.io container ls
 List images
 
 ctr --address "\\.\\pipe\\containerd-containerd" --namespace k8s.io image ls
 crictl
 "C:\var\lib\rancher\rke2\bin\crictl.exe" -r "npipe:////./pipe/containerd-containerd" ps
-logging
-rke2 service logs:
+```
 
 
 ### Kubelet logs
