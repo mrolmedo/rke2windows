@@ -2,29 +2,27 @@
 Use PowerShell (as Administrator).
 
 ### Binaries
-C:\var\lib\rancher\rke2\bin> ls -Name
+```C:\var\lib\rancher\rke2\bin> ls -Name
 calico-ipam.exe
 calico-node.exe
 calico.exe
 containerd-shim-runhcs-v1.exe
 containerd.exe
-
 crictl.exe
-
 ctr.exe
-
 hns.psm1
-
 host-local.exe
-
 kube-proxy.exe
-
 kubectl.exe
 kubelet.exe
 win-overlay.exe
+```
+### Kubeconfig
+```
 kubeconfig / kubectl
 set KUBECONFIG="C:\var\lib\rancher\rke2\agent\kubelet.kubeconfig"
 "C:\var\lib\rancher\rke2\bin\kubectl.exe" get node
+```
 ctr
 List containers using ctr
 
