@@ -34,7 +34,7 @@ crictl
 "C:\var\lib\rancher\rke2\bin\crictl.exe" -r "npipe:////./pipe/containerd-containerd" ps
 ```
 
-### Pre checks
+### Prechecks
 
 - [x] WindowsOptionalFeature  Installed and Enable
 ```
@@ -44,7 +44,11 @@ Get-WindowsFeature -Name Containers
 - [x] Kubelet, kube-proxy, calico running
 ```
 Get-Process | findstr "kube calico"
-
+```
+- [x] HNS running
+```
+Get-Service hns
+```
 ### Kubelet logs
 ```
 C:\var\lib\rancher\rke2\agent\logs>kubelet.log
@@ -55,7 +59,76 @@ Get-EventLog -LogName Application -Source 'rke'  -Newest 500 | format-table  -Pr
 Get-EventLog -LogName Application -Source 'rancher-wins'  -Newest 500 | format-table  -Property TimeGenerated, ReplacementStrings -Wrap
 ```
 
-
-
 ### Collect logs
 - https://github.com/rancherlabs/support-tools/tree/master/collection/rancher/v2.x/windows-log-collector
+
+### Endpoints
+   - *List endpoints*
+```
+PS C:\logpath>hnsdiag list all
+Output example
+Endpoint         : c9385412-bdef-49f5-88b0-c9d484ef6716
+    Name             : 4a625a2b10a33b0dea96fe8743fb8e13504481ee9f481d179f8e75b8c98611d2_Calico
+    IP Address       : 10.42.213.221 ### pod IP
+```
+
+  - *Inspect endpoint*
+```
+PS C:\logpath> get-hnsendpoint | ? ID -Like "c9385412-bdef-49f5-88b0-c9d484ef6716"
+ID                 : c9385412-bdef-49f5-88b0-c9d484ef6716
+Name               : 4a625a2b10a33b0dea96fe8743fb8e13504481ee9f481d179f8e75b8c98611d2_Calico
+Version            : 55834574851
+AdditionalParams   :
+Resources          : @{AdditionalParams=; AllocationOrder=14; Allocators=System.Object[]; CompartmentOperationTime=0; Flags=0; Health=; ID=36C2BD3E-FB53-4E32-8897-5ECBD3679415; PortOperationTime=0; State=1; SwitchOperationTime=0; VfpOperationTime=0; parentId=40963662-0489-4EBA-9F44-EB6AD695F35E}
+State              : 3
+VirtualNetwork     : 06560ccd-89f3-4c69-a1a1-e9e368201482
+VirtualNetworkName : Calico
+Policies           : {@{ExceptionList=System.Object[]; Type=OutBoundNAT}, @{DestinationPrefix=10.43.0.0/16; NeedEncap=True; Type=ROUTE}, @{PA=10.156.233.218; Type=PA}, @{Action=Allow; Direction=In; Id=allow-host-to-endpoint; InternalPort=0; LocalAddresses=; LocalPort=0; Priority=900; Protocol=256; RemoteAddresses=10.156.233.218/32; RemotePort=0; RuleType=Switch; Scope=0; ServiceName=; Type=ACL}...}
+MacAddress         : 0E-2A-0a-2a-d5-dd
+IPAddress          : 10.42.213.221
+PrefixLength       : 26
+GatewayAddress     : 10.42.213.193
+IPSubnetId         : 2b41a5a7-6228-4df4-a6a4-51624b9d8e91
+DNSServerList      : 10.43.0.10
+DNSSuffix          : rke2-tcp-reset-test.svc.cluster.local,svc.cluster.local,cluster.local
+Namespace          : @{ID=4ea04396-a6e5-478f-915e-909b8c80b2ef}
+EncapOverhead      : 50
+SharedContainers   : {4a625a2b10a33b0dea96fe8743fb8e13504481ee9f481d179f8e75b8c98611d2, 437cdcccbad47d99dca87acb3b0256d2aa988a19b5fba17241c14ba6e9d86da0}
+
+```
+- List ACL_ENDPOINT_LAYER for a port ### Network policies in Windows are implemented by the VFP (Virtual Filtering Platform) system. Specifically, by the "ACL_ENDPOINT_LAYER".
+```
+vfpctrl /port c9385412-bdef-49f5-88b0-c9d484ef6716 /layer ACL_ENDPOINT_LAYER /list-rule
+ ITEM LIST
+===========
+
+  GROUP : ACL_ENDPOINT_GROUP_IPV4_IN
+      Friendly name : ACL_ENDPOINT_GROUP_IPV4_IN
+      Priority : 1
+      Direction : IN
+      Type : IPv4
+        Conditions:
+            <none>
+      Match type : Priority-based match
+
+    RULE : A2CFF68C-B5F4-4988-841F-0F6F77AF3D09
+        Friendly name : allow-host-to-endpoint
+        Priority : 900
+        Flags : 8195 terminating stateful 
+        Type : allow
+        Conditions:
+            Source IP : 10.156.233.218
+        Flow TTL: 240
+        FlagsEx : 0 
+
+    RULE : 0EE8DCA1-9AA8-417C-88E0-422CE9E52CBF
+        Friendly name : profile-kns.rke2-tcp-reset-test--atbkwj8tPVFG3P1-0
+        Priority : 1000
+        Flags : 8195 terminating stateful 
+        Type : allow
+        Conditions:
+            <none>
+        Flow TTL: 240
+        FlagsEx : 0
+  (redacted)
+```
