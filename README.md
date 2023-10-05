@@ -62,6 +62,12 @@ Get-EventLog -LogName Application -Source 'rancher-wins'  -Newest 500 | format-t
 ### Collect logs
 - https://github.com/rancherlabs/support-tools/tree/master/collection/rancher/v2.x/windows-log-collector
 
+
+### Rancher system-agent-service
+```
+Status : C:\Windows\system32> Get-Service| Where-Object { $_.Name -like '*rancher-wins*'
+
+```
 ### Endpoints
    - *List endpoints*
 ```
