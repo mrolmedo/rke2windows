@@ -36,16 +36,16 @@ crictl
 
 ### Prechecks
 
-- [x] WindowsOptionalFeature  Installed and Enable
+- [:white_check_mark:] WindowsOptionalFeature  Installed and Enable
 ```
 Get-WindowsOptionalFeature -Online -FeatureName constainers
 Get-WindowsFeature -Name Containers
 ```
-- [x] Kubelet, kube-proxy, calico running
+- [:white_check_mark:] Kubelet, kube-proxy, calico running
 ```
 Get-Process | findstr "kube calico"
 ```
-- [x] HNS running
+- [:white_check_mark:] HNS running
 ```
 Get-Service hns
 ```
@@ -65,7 +65,10 @@ Get-EventLog -LogName Application -Source 'rancher-wins'  -Newest 500 | format-t
 
 ### Rancher system-agent-service
 ```
-Status : C:\Windows\system32> Get-Service| Where-Object { $_.Name -like '*rancher-wins*'
+Status :
+C:\Windows\system32> Get-Service| Where-Object { $_.Name -like '*rancher-wins*'
+
+C:\Windows\system32> Get-Service| Where-Object { $_.Name -like '*rke2*'}
 
 ```
 ### Endpoints
