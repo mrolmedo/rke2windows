@@ -66,7 +66,7 @@ Get-EventLog -LogName Application -Source 'rancher-wins'  -Newest 500 | format-t
 ### Rancher system-agent-service
 ```
 Status :
-C:\Windows\system32> Get-Service| Where-Object { $_.Name -like '*rancher-wins*'
+C:\Windows\system32> Get-Service| Where-Object { $_.Name -like '*rancher-wins*'}
 
 C:\Windows\system32> Get-Service| Where-Object { $_.Name -like '*rke2*'}
 
