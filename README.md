@@ -136,4 +136,5 @@ vfpctrl /port c9385412-bdef-49f5-88b0-c9d484ef6716 /layer ACL_ENDPOINT_LAYER /li
 
 | Linux | Windows| 
 | --- | --- |  
-| wget |Invoke-WebRequest -Uri https://xxxx -OutFile "filename"
+| wget |Invoke-WebRequest -Uri https://xxxx -OutFile "filename" || Invoke-WebRequest -Uri http://aka.ms/gettssv2  -OutFile gettssv2.zip
+| gunzip |  Expand-Archive -Path .\gettssv2.zip -DestinationPath ./gettssv
