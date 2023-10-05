@@ -136,4 +136,4 @@ vfpctrl /port c9385412-bdef-49f5-88b0-c9d484ef6716 /layer ACL_ENDPOINT_LAYER /li
 
 | Linux | Windows| 
 | --- | --- |  
-| wget |Invoke-WebRequest -Uri https://xxxx
+| wget |Invoke-WebRequest -Uri https://xxxx -OutFile "filename"
