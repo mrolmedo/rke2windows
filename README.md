@@ -55,7 +55,7 @@ C:\var\lib\rancher\rke2\agent\logs>kubelet.log
 ```
 ### Event logs
 ```
-Get-EventLog -LogName Application -Source 'rke'  -Newest 500 | format-table  -Property TimeGenerated, ReplacementStrings -Wrap
+Get-EventLog -LogName Application -Source 'rke2'  -Newest 500 | format-table  -Property TimeGenerated, ReplacementStrings -Wrap
 Get-EventLog -LogName Application -Source 'rancher-wins'  -Newest 500 | format-table  -Property TimeGenerated, ReplacementStrings -Wrap
 ```
 
