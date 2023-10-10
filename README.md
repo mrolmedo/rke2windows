@@ -70,6 +70,21 @@ C:\Windows\system32> Get-Service| Where-Object { $_.Name -like '*rancher-wins*'}
 
 C:\Windows\system32> Get-Service| Where-Object { $_.Name -like '*rke2*'}
 
+
+
+
+PS C:\Windows\system32> Get-Service -DisplayName 'Rancher wins'
+
+Status   Name               DisplayName
+------   ----               -----------
+Running  rancher-wins       Rancher Wins
+
+
+PS C:\Windows\system32> Get-Service -DisplayName 'rke2'
+
+Status   Name               DisplayName
+------   ----               -----------
+Running  rke2               rke2
 ```
 ### Endpoints
    - *List endpoints*
