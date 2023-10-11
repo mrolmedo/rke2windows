@@ -44,6 +44,9 @@ Get-WindowsFeature -Name Containers
 - [:white_check_mark:] Kubelet, kube-proxy, calico running, containerd, containerd-shim-runhcs-v1
 ```
  Get-Process -Name calico-node,kubelet,containerd,kube-proxy,containerd-shim-runhcs-v1
+```
+```
+Output
 Handles  NPM(K)    PM(K)      WS(K)     CPU(s)     Id  SI ProcessName
 -------  ------    -----      -----     ------     --  -- -----------
     256      16    27692      40384   1,713.33   2748   0 calico-node
@@ -52,6 +55,7 @@ Handles  NPM(K)    PM(K)      WS(K)     CPU(s)     Id  SI ProcessName
     346      25    49032      67980   7,920.91   2116   0 kubelet
     197      17    27320      37516     181.41    440   0 kube-proxy
 ```
+
 - [:white_check_mark:] HNS running
 ```
 Get-Service hns
