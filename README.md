@@ -41,13 +41,24 @@ crictl
 Get-WindowsOptionalFeature -Online -FeatureName constainers
 Get-WindowsFeature -Name Containers
 ```
-- [:white_check_mark:] Kubelet, kube-proxy, calico running
+- [:white_check_mark:] Kubelet, kube-proxy, calico running, containerd, containerd-shim-runhcs-v1
 ```
-Get-Process | findstr "kube calico"
+ Get-Process -Name calico-node,kubelet,containerd,kube-proxy,containerd-shim-runhcs-v1
+Handles  NPM(K)    PM(K)      WS(K)     CPU(s)     Id  SI ProcessName
+-------  ------    -----      -----     ------     --  -- -----------
+    256      16    27692      40384   1,713.33   2748   0 calico-node
+    313      22    43180      52568   2,244.58   3440   0 containerd
+    184      11    17416      17112      15.42    656   0 containerd-shim-runhcs-v1
+    346      25    49032      67980   7,920.91   2116   0 kubelet
+    197      17    27320      37516     181.41    440   0 kube-proxy
 ```
 - [:white_check_mark:] HNS running
 ```
 Get-Service hns
+```
+- [:white_check_mark:] Rancher wins
+```
+
 ```
 ### Kubelet logs
 ```
