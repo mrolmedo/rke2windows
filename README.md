@@ -58,7 +58,11 @@ Get-Service hns
 ```
 - [:white_check_mark:] Rancher wins
 ```
+Get-Service| Where-Object { $_.Name -like '*rancher-wins*'}
 
+Status   Name               DisplayName
+------   ----               -----------
+Running  rancher-wins       Rancher Wins
 ```
 ### Kubelet logs
 ```
