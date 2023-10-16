@@ -56,9 +56,13 @@ Handles  NPM(K)    PM(K)      WS(K)     CPU(s)     Id  SI ProcessName
     197      17    27320      37516     181.41    440   0 kube-proxy
 ```
 
-- [:white_check_mark:] HNS running
+- [:white_check_mark:] HNS and Hyper-V Host Compute Service running
 ```
-Get-Service hns
+Get-Service hns,vmcompute
+Status   Name               DisplayName
+------   ----               -----------
+Running  hns                Host Network Service
+Running  vmcompute          Hyper-V Host Compute Service
 ```
 - [:white_check_mark:] Rancher wins
 ```
