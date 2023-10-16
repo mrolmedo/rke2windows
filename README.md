@@ -38,8 +38,9 @@ crictl
 
 - [:white_check_mark:] WindowsOptionalFeature  Installed and Enable
 ```
-Get-WindowsOptionalFeature -Online -FeatureName constainers
+Get-WindowsOptionalFeature -Online -FeatureName containers
 Get-WindowsFeature -Name Containers
+Get-WindowsOptionalFeature -Online | Where-Object -FilterScript {$_.featurename -Like "*hns*"}
 ```
 - [:white_check_mark:] Kubelet, kube-proxy, calico running, containerd, containerd-shim-runhcs-v1
 ```
