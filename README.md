@@ -109,6 +109,12 @@ Status   Name               DisplayName
 ------   ----               -----------
 Running  rke2               rke2
 ```
+
+### STATIC IP
+```
+New-NetIPAddress -InterfaceIndex 7 -AddressFamily IPv4 -IPAddress XXXXXX -PrefixLength 23 -DefaultGateway XXXXXX
+```
+
 ### Endpoints
    - *List endpoints*
 ```
