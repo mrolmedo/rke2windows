@@ -118,7 +118,7 @@ New-NetIPAddress -InterfaceIndex 7 -AddressFamily IPv4 -IPAddress XXXXXX -Prefix
 ### Endpoints
    - *List endpoints*
 ```
-PS C:\logpath>hnsdiag list all
+PS C:\logpath>hnsdiag  list endpoints | Select-String "podip"  -context 3,0
 Output example
 Endpoint         : c9385412-bdef-49f5-88b0-c9d484ef6716
     Name             : 4a625a2b10a33b0dea96fe8743fb8e13504481ee9f481d179f8e75b8c98611d2_Calico
