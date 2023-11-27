@@ -192,7 +192,38 @@ vfpctrl /port c9385412-bdef-49f5-88b0-c9d484ef6716 /layer ACL_ENDPOINT_LAYER /li
 | wget |Invoke-WebRequest -Uri https://xxxx -OutFile "filename" || Invoke-WebRequest -Uri http://aka.ms/gettssv2  -OutFile gettssv2.zip
 | gunzip |  Expand-Archive -Path .\gettssv2.zip -DestinationPath ./gettssv
 
-### Windows commands
+## Windows commands
 ```
 get-wmiobject win32_service | where { $_.name -eq ‘hns’}).processID
+(Get-EventLog -LogName "System" -Source "Service Control Manager" -EntryType "Information" -Message "*hns service*running*" -Newest 4).TimeGenerated
 ```
+- ### KEYS
+```
+PS C:\> reg query HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\hns\
+
+HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\hns
+    DependOnService    REG_MULTI_SZ    RpcSs\0nsi\0vfpext
+    Description    REG_SZ    @%systemroot%\system32\HostNetSvc.dll,-101
+    DisplayName    REG_SZ    @%systemroot%\system32\HostNetSvc.dll,-100
+    ErrorControl    REG_DWORD    0x1
+    FailureActions    REG_BINARY    805101000000000000000000030000001400000001000000C0D401000100000080A903000000000000000000
+    ImagePath    REG_EXPAND_SZ    %systemroot%\system32\svchost.exe -k NetSvcs -p
+    ObjectName    REG_SZ    LocalSystem
+    RequiredPrivileges    REG_MULTI_SZ    SeChangeNotifyPrivilege\0SeCreateGlobalPrivilege\0SeLoadDriverPrivilege
+    ServiceSidType    REG_DWORD    0x1
+    Start    REG_DWORD    0x3
+    Type    REG_DWORD    0x20
+
+HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\hns\Parameters
+HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\hns\State
+HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\hns\TriggerInfo
+
+PS C:\Windows> reg add HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\hns\State /v FwPerfImprovementChange /t REG_DWORD /d 1 /f
+The operation completed successfully.
+PS C:\Windows> reg query HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\hns\State
+
+HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\hns\State
+    FwPerfImprovementChange    REG_DWORD    0x1
+
+HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\hns\State\HostComputeNetwork
+PS C:\Windows> shutdown /r /t 0
