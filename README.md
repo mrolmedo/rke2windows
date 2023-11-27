@@ -193,8 +193,12 @@ vfpctrl /port c9385412-bdef-49f5-88b0-c9d484ef6716 /layer ACL_ENDPOINT_LAYER /li
 | gunzip |  Expand-Archive -Path .\gettssv2.zip -DestinationPath ./gettssv
 
 ## Windows commands
+ - Identify process
 ```
 get-wmiobject win32_service | where { $_.name -eq ‘hns’}).processID
+```
+ - Start time service
+```
 (Get-EventLog -LogName "System" -Source "Service Control Manager" -EntryType "Information" -Message "*hns service*running*" -Newest 4).TimeGenerated
 ```
 - ### KEYS
@@ -227,3 +231,13 @@ HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\hns\State
 
 HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\hns\State\HostComputeNetwork
 PS C:\Windows> shutdown /r /t 0
+```
+- ### Network
+  - Proccess monitoring tool
+  ```
+  Download our TSS tool available at http://aka.ms/gettssv2
+  Invoke-WebRequest -Uri https://xxxx -OutFile getssv2.zip
+  Expand-Archive -Path .\gettssv2.zip -DestinationPath ./gettssv
+  cd getsssv
+  ```
+  
