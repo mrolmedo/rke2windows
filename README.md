@@ -201,8 +201,21 @@ get-wmiobject win32_service | where { $_.name -eq ‘hns’}).processID
 ```
 (Get-EventLog -LogName "System" -Source "Service Control Manager" -EntryType "Information" -Message "*hns service*running*" -Newest 4).TimeGenerated
 ```
+- ### Updates
+```
+   PS C:\var\log\pods> Get-WindowsUpdate
+
+ComputerName Status     KB          Size Title
+------------ ------     --          ---- -----
+WIN-S3KCV... -D-----    KB5032336   65MB 2023-11 Cumulative Update for .NET Framework 3.5, 4.8 and 4.8.1 for Microsoft server operating system version...
+WIN-S3KCV... -------    KB2267602  913MB Security Intelligence Update for Microsoft Defender Antivirus - KB2267602 (Version 1.401.1274.0) - Current Ch...
+WIN-S3KCV... -D-----    KB5032198   24GB 2023-11 Cumulative Update for Microsoft server operating system version 21H2 for x64-based Systems (KB5032198)
+
+Get-WindowsUpdate -Install -KBArticleID KB5031221
+```
 - ### KEYS
 ```
+
 PS C:\> reg query HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\hns\
 
 HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\hns
