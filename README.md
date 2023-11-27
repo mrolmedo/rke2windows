@@ -113,6 +113,7 @@ Running  rke2               rke2
 ### STATIC IP
 ```
 New-NetIPAddress -InterfaceIndex 7 -AddressFamily IPv4 -IPAddress XXXXXX -PrefixLength 23 -DefaultGateway XXXXXX
+PS C:\Windows\system32> Set-DnsClientServerAddress -InterfaceIndex 10 -ServerAddresses ("10.xx.xx.XX","10.XX.XX.XX")
 ```
 
 ### Endpoints
