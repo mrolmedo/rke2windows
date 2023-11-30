@@ -254,4 +254,10 @@ PS C:\Windows> shutdown /r /t 0
   Expand-Archive -Path .\gettssv2.zip -DestinationPath ./gettssv
   cd getsssv
   ```
+  - Nettrace
+  ```
+  -
+  Start-BitsTransfer https://raw.githubusercontent.com/microsoft/SDN/master/Kubernetes/windows/debug/collectlogs.ps1
+  PS C:\net> .\collectlogs.ps1
+  ```
   
