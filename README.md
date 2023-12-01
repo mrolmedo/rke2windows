@@ -204,6 +204,7 @@ get-wmiobject win32_service | where { $_.name -eq ‘hns’}).processID
 ```
 - ### Updates
 ```
+   Install-Module -Name PSWindowsUpdate
    PS C:\var\log\pods> Get-WindowsUpdate
 
 ComputerName Status     KB          Size Title
@@ -213,6 +214,15 @@ WIN-S3KCV... -------    KB2267602  913MB Security Intelligence Update for Micros
 WIN-S3KCV... -D-----    KB5032198   24GB 2023-11 Cumulative Update for Microsoft server operating system version 21H2 for x64-based Systems (KB5032198)
 
 Get-WindowsUpdate -Install -KBArticleID KB5031221
+```
+```
+S C:\>  gwmi win32_quickfixengineering |sort installedon -desc
+
+Source        Description      HotFixID      InstalledBy          InstalledOn
+------        -----------      --------      -----------          -----------
+WIN-S3KCV0... Update           KB5031590     NT AUTHORITY\SYSTEM  10/18/2023 12:00:00 AM
+WIN-S3KCV0... Security Update  KB5031364     NT AUTHORITY\SYSTEM  10/18/2023 12:00:00 AM
+WIN-S3KCV0... Update           KB5030999     NT AUTHORITY\SYSTEM  10/16/2023 12:00:00 AM
 ```
 - ### KEYS
 ```
