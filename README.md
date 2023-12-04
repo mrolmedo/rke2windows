@@ -114,6 +114,15 @@ Running  rke2               rke2
 ```
 New-NetIPAddress -InterfaceIndex 7 -AddressFamily IPv4 -IPAddress XXXXXX -PrefixLength 23 -DefaultGateway XXXXXX
 PS C:\Windows\system32> Set-DnsClientServerAddress -InterfaceIndex 10 -ServerAddresses ("10.xx.xx.XX","10.XX.XX.XX")
+PS C:\nettrace> Get-DnsClientServerAddress
+
+InterfaceAlias               Interface Address ServerAddresses
+                             Index     Family
+--------------               --------- ------- ---------------
+vEthernet (Ethernet0)                4 IPv4    {10.xx.xx.xx, 10.xx.xx.xx}
+vEthernet (Ethernet0)                4 IPv6    {}
+Loopback Pseudo-Interface 1          1 IPv4    {}
+Loopback Pseudo-Interface 1          1 IPv6    {fec0:0:0:ffff::1, fec0:0:0:ffff::2, fec0:0:0:ffff::3}
 ```
 
 ### Endpoints
