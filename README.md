@@ -213,6 +213,9 @@ Get-CimInstance -ClassName Win32_Service -Filter "name = 'hns'"
 ```
 (Get-EventLog -LogName "System" -Source "Service Control Manager" -EntryType "Information" -Message "*hns service*running*" -Newest 4).TimeGenerated
 ```
+```
+Get-WinEvent -ListLog * $Results | Select-Object -First 15
+```
 - Commandline process
 ```
 PS C:\var\lib\rancher\rke2\agent> $process = "calico-node.exe"
