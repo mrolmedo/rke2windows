@@ -221,6 +221,10 @@ Get-WinEvent -ListLog * $Results | Select-Object -First 15
 PS C:\var\lib\rancher\rke2\agent> $process = "calico-node.exe"
 PS C:\var\lib\rancher\rke2\agent> Get-WmiObject Win32_Process -Filter "name = '$process'"
 ```
+```
+ Get-ChildItem -Path  C:\var\log\pods\*/*/*/* | Sort-Object Length -Descending | Select-Object length,name,directory -First 100 | Format-Table -AutoSize
+``` 
+
 - ### Updates
 ```
    Install-Module -Name PSWindowsUpdate
