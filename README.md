@@ -224,6 +224,14 @@ PS C:\var\lib\rancher\rke2\agent> Get-WmiObject Win32_Process -Filter "name = '$
 ```
  Get-ChildItem -Path  C:\var\log\pods\*/*/*/* | Sort-Object Length -Descending | Select-Object length,name,directory -First 100 | Format-Table -AutoSize
 ``` 
+- Folder size
+
+```
+C: (Get-ChildItem C:\var\lib\rancher\rke2\agent\containerd\io.containerd.snapshotter.v1.windows -force -Recurse -ErrorAction SilentlyContinue| measure Length -sum).sum / 1Gb
+
+C:\var\lib\rancher\rke2\agent\containerd\io.containerd.snapshotter.v1.windows> ls -Force | Add-Member -Force -Passthru -Type ScriptProperty -Name Length -Value {ls $this -Recurse -Force | Measure -Sum Length | Select -Expand Sum } | Sort-Object Length -Descending | Format-Table @{label="TotalSize (MB)";expression={[Math]::Truncate($_.Length / 1MB)};width=14}, @{label="Mode";expression={$_.Mode};width=8}, Name
+
+```
 
 - ### Updates
 ```
