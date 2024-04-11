@@ -87,8 +87,8 @@ Get-EventLog -LogName Application -Source 'rancher-wins'  -Newest 500 | format-t
 Get-WinEvent -LogName Application -FilterXPath "*[System[Provider[@Name='rke2']]]" -MaxEvents 120 | Sort-Object TimeCreated | Select-Object TimeCreated, @{Name='ReplacementStrings';Expression={$_.Properties[0].Value}} | Format-Table -Wrap
 ```
 ```
-PS C:\var\lib\rancher\rke2\agent> $process = "kube-proxy.exe"
-PS C:\var\lib\rancher\rke2\agent> Get-WmiObject Win32_Process -Filter "name = '$process'"
+PS  $process = "kube-proxy.exe"
+PS   Get-WmiObject Win32_Process -Filter "name = '$process'"
 ```
 ### Collect logs
 - https://github.com/rancherlabs/support-tools/tree/master/collection/rancher/v2.x/windows-log-collector
@@ -314,4 +314,10 @@ PS C:\Windows> shutdown /r /t 0
 ```
  Invoke-WebRequest -Uri https://download.sysinternals.com/files/ProcessMonitor.zip -Outfile moc.zip
 Expand-Archive -Path .\moc.zip -DestinationPath ./moc
+```
+- ### Proc explorer
+
+```
+PS C:\usr\local\bin> Invoke-WebRequest -Uri https://download.sysinternals.com/files/ProcessExplorer.zip  -Outfile file.zip
+PS C:\usr\local\bin> Expand-Archive -Path .\file.zip -DestinationPath ./file
 ```
