@@ -309,4 +309,9 @@ PS C:\Windows> shutdown /r /t 0
   Start-BitsTransfer https://raw.githubusercontent.com/microsoft/SDN/master/Kubernetes/windows/debug/collectlogs.ps1
   PS C:\net> .\collectlogs.ps1
   ```
-  
+
+- ### Procmon
+```
+ Invoke-WebRequest -Uri https://download.sysinternals.com/files/ProcessMonitor.zip -Outfile moc.zip
+Expand-Archive -Path .\moc.zip -DestinationPath ./moc
+```
