@@ -76,12 +76,20 @@ Running  rancher-wins       Rancher Wins
 ```
 C:\var\lib\rancher\rke2\agent\logs>kubelet.log
 ```
-### Event logs
+### RKE2 service logs
 ```
 Get-EventLog -LogName Application -Source 'rke2'  -Newest 500 | format-table  -Property TimeGenerated, ReplacementStrings -Wrap
 Get-EventLog -LogName Application -Source 'rancher-wins'  -Newest 500 | format-table  -Property TimeGenerated, ReplacementStrings -Wrap
 ```
-
+### kube-proxy 
+   - Flags
+```
+Get-WinEvent -LogName Application -FilterXPath "*[System[Provider[@Name='rke2']]]" -MaxEvents 120 | Sort-Object TimeCreated | Select-Object TimeCreated, @{Name='ReplacementStrings';Expression={$_.Properties[0].Value}} | Format-Table -Wrap
+```
+```
+PS C:\var\lib\rancher\rke2\agent> $process = "kube-proxy.exe"
+PS C:\var\lib\rancher\rke2\agent> Get-WmiObject Win32_Process -Filter "name = '$process'"
+```
 ### Collect logs
 - https://github.com/rancherlabs/support-tools/tree/master/collection/rancher/v2.x/windows-log-collector
 
