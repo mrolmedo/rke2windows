@@ -321,3 +321,16 @@ Expand-Archive -Path .\moc.zip -DestinationPath ./moc
 PS C:\usr\local\bin> Invoke-WebRequest -Uri https://download.sysinternals.com/files/ProcessExplorer.zip  -Outfile file.zip
 PS C:\usr\local\bin> Expand-Archive -Path .\file.zip -DestinationPath ./file
 ```
+
+- ### Windows log collector
+  ```
+  Invoke-WebRequest -Uri https://raw.githubusercontent.com/microsoft/SDN/master/Kubernetes/windows/debug/collectlogs.ps1  -Outfile collectlogs.ps1
+  PS C:\pathtothescript> .\collectlogs.ps1
+  rm C:\k\debug\logs_1 -Recurse -Force -ErrorAction SilentlyContinue
+  mkdir C:\k\debug\logs_1\
+  netsh wfp capture start file = "C:\k\debug\logs_1\wfpOutput.cab"
+  C:\k\debug\startpacketcapture.ps1 -EtlFile "C:\k\debug\logs_1\server.etl"
+  Press 'q' to stop the C:\k\debug\startpacketcapture.ps1 command
+  netsh wfp capture stop
+ 
+ ```
