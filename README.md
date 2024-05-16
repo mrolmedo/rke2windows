@@ -310,6 +310,10 @@ PS C:\Windows> shutdown /r /t 0
   PS C:\net> .\collectlogs.ps1
   ```
 
+ ```
+ netsh interface ipv4 show interfaces
+```
+
 - ### Procmon
 ```
  Invoke-WebRequest -Uri https://download.sysinternals.com/files/ProcessMonitor.zip -Outfile moc.zip
