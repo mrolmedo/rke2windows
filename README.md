@@ -314,6 +314,18 @@ PS C:\Windows> shutdown /r /t 0
  netsh interface ipv4 show interfaces
 ```
 
+- ### Firewall
+```
+PS C:\etc\rancher\wins> $FWProfiles = (Get-NetFirewallProfile);
+Write-Host "Windows Firewall Profile Statuses" -Foregroundcolor Yellow;
+$FWProfiles | %{
+    If($_.Enabled -eq 1){
+        Write-Host "The Windows Firewall $($_.Name) profile is enabled"  -Foregroundcolor Green
+        }Else{
+        Write-Host "The Windows Firewall $($_.Name) profile is disabled" -Foregroundcolor Red
+        } 
+    };
+```
 - ### Procmon
 ```
  Invoke-WebRequest -Uri https://download.sysinternals.com/files/ProcessMonitor.zip -Outfile moc.zip
