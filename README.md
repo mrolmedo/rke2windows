@@ -203,7 +203,11 @@ vfpctrl /port c9385412-bdef-49f5-88b0-c9d484ef6716 /layer ACL_ENDPOINT_LAYER /li
         FlagsEx : 0
   (redacted)
 ```
+### HNS Networks
+```
+ Get-HnsNetwork | Where-Object { $_.Name -eq 'Calico' -or $_.Name -eq 'vxlan0' -or $_.Name -eq 'nat' -or $_.Name -eq 'External' -or $_.Name -eq 'flannel.4096' } | Select-Object Name, ID, Subnets, Policies
 
+```
 
 | Linux | Windows| 
 | --- | --- |  
