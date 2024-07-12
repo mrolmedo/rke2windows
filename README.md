@@ -301,6 +301,12 @@ HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\hns\State
 
 HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\hns\State\HostComputeNetwork
 PS C:\Windows> shutdown /r /t 0
+PS C:\MS_DATA> reg delete HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\hns\State\ /v FwPerfImprovementChange
+Delete the registry value FwPerfImprovementChange (Yes/No)? y
+The operation completed successfully.
+PS C:\MS_DATA> reg query HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\hns\State
+
+
 ```
 - ### Network
   - Proccess monitoring tool
