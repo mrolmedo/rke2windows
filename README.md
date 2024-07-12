@@ -205,9 +205,11 @@ vfpctrl /port c9385412-bdef-49f5-88b0-c9d484ef6716 /layer ACL_ENDPOINT_LAYER /li
 ```
 ### HNS Networks
 ```
- Get-HnsNetwork | Where-Object { $_.Name -eq 'Calico' -or $_.Name -eq 'vxlan0' -or $_.Name -eq 'nat' -or $_.Name -eq 'External' -or $_.Name -eq 'flannel.4096' } | Select-Object Name, ID, Subnets, Policies
+Get-HnsNetwork | Where-Object { $_.Name -eq 'Calico' -or $_.Name -eq 'vxlan0' -or $_.Name -eq 'nat' -or $_.Name -eq 'External' -or $_.Name -eq 'flannel.4096' } | Select-Object Name, ID, Subnets, Policies
 Get-HnsNetwork  | % { Get-HnsNetwork -Id $_.ID -Detailed }| Select Name, Type, Id, @{Name="DestinationPrefix"; Expression={$_.Policies}}  | Convertto-json -Depth 20
-
+Get-HnsEndpoint | where IpAddress -EQ 10.42.139.42 | ConvertTo-Json -Depth 5
+get-hnsendpoint | Where-Object { $_.IPAddress -eq "10.42.139.42" } | Select Name, Type, Id, @{Name="DestinationPrefix"; Expression={$_.Policies}} | Convertto-json -Dep 30
+vfpctrl /port FDF17F66-6ECE-46FE-9737-F29C8DA47A24 /layer VNET_ENCAP_LAYER /list-rule ( IPs de los paquetes que si tienen el destIP deberian encapsularse y los detalles de la encapsulacion)
 ```
 
 | Linux | Windows| 
