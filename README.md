@@ -357,3 +357,7 @@ PS C:\usr\local\bin> Expand-Archive -Path .\file.zip -DestinationPath ./file
   netsh wfp capture stop
  
  ```
+- ### DNS
+```
+ resolve-dnsname -Name kubernetes.default.svc.cluster.local -Server "pod-coredns"
+ ```
