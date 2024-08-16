@@ -312,7 +312,7 @@ PS C:\MS_DATA> reg query HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\hn
   - Proccess monitoring tool
   ```
   Download our TSS tool available at http://aka.ms/gettssv2
-  Invoke-WebRequest -Uri https://xxxx -OutFile getssv2.zip
+  Invoke-WebRequest -Uri https://aka.ms/gettss -OutFile getssv2.zip
   Expand-Archive -Path .\gettssv2.zip -DestinationPath ./gettssv
   cd getsssv
   ```
